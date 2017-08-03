@@ -1,5 +1,5 @@
 {
-  "name": "cbwar/laravel-boilerplatetracks",
+  "name": "cbwar/laravel-boilerplatechangestracking",
   "type": "library",
   "authors": [
     {
@@ -9,8 +9,10 @@
   ],
   "autoload": {
     "psr-4": {
-      "Cbwar\\Laravel\\BoilerplateTracks\\": "src"
+      "Cbwar\\Laravel\\BoilerplateChangesTracking\\": "src"
     }
   },
-  "require": {}
+  "require": {
+    "cbwar/laravel-modelchanges": "^1"
+  }
 }

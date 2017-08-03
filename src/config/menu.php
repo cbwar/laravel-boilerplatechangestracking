@@ -1,5 +1,5 @@
 <?php
 
 return [
-    Cbwar\Laravel\BoilerplateTracks\Menu\Tracks::class,
+    Cbwar\Laravel\BoilerplateChangesTracking\Menu\Tracks::class,
 ];

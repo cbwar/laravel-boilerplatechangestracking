@@ -7,7 +7,7 @@
 
 Route::group([
     'prefix' => config('boilerplate.app.prefix', ''),
-    'namespace' => 'Cbwar\Laravel\BoilerplateTracks\Controllers',
+    'namespace' => 'Cbwar\Laravel\BoilerplateChangesTracking\Controllers',
     'middleware' => ['web', 'auth', 'ability:admin,backend_access']
 ], function () {
 

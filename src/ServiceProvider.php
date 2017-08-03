@@ -1,6 +1,6 @@
 <?php
 
-namespace Cbwar\Laravel\BoilerplateTracks;
+namespace Cbwar\Laravel\BoilerplateChangesTracking;
 
 use Illuminate\Support\ServiceProvider as Provider;
 use Illuminate\Foundation\AliasLoader;
@@ -57,6 +57,6 @@ class ServiceProvider extends Provider
             'boilerplate.app.prefix' => config('boilerplate.app.prefix') === '' ? 'admin' : config('boilerplate.app.prefix')
         ]);
 
-        $this->app->register(\Cbwar\Laravel\ModelTracking\ServiceProvider::class);
+        $this->app->register(\Cbwar\Laravel\ModelChanges\ServiceProvider::class);
     }
 }

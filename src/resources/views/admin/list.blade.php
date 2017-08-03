@@ -1,5 +1,5 @@
 @extends('boilerplate::layout.index', [
-    'title' => __('boilerplate_tracks::admin.list.title'),
+    'title' => __('boilerplate_tracks::admin.main_title'),
 
 ])
 
@@ -22,7 +22,7 @@
                     <th>{{ __('boilerplate_tracks::admin.list.tbl_id') }}</th>
                     <th>{{ __('boilerplate_tracks::admin.list.tbl_date') }}</th>
                     <th>{{ __('boilerplate_tracks::admin.list.tbl_user') }}</th>
-                    <th>{{ __('boilerplate_tracks::admin.list.tbl_action') }}</th>
+                    <th>{{ __('boilerplate_tracks::admin.list.tbl_type') }}</th>
                     <th>{{ __('boilerplate_tracks::admin.list.tbl_title') }}</th>
                     <th>{{ __('boilerplate_tracks::admin.list.tbl_description') }}</th>
                     {{--<th></th>--}}
@@ -51,7 +51,7 @@
                     {data: 'id', name: 'id', visible: false},
                     {data: 'created_at', name: 'created_at', visible: true},
                     {data: 'user_id', name: 'user_id', sortable: false},
-                    {data: 'action', name: 'action', sortable: false},
+                    {data: 'type', name: 'type', sortable: false},
                     {data: 'ref_title', name: 'ref_title', sortable: false},
                     {data: 'description', name: 'description', sortable: false},
                 ]
