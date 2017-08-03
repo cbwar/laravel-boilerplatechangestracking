@@ -1,0 +1,16 @@
+{
+  "name": "cbwar/laravel-boilerplatetracks",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Raphael Lisch",
+      "email": "raphael.lisch@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Cbwar\\Laravel\\BoilerplateTracks\\": "src"
+    }
+  },
+  "require": {}
+}
