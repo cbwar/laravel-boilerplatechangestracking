@@ -13,6 +13,6 @@
     }
   },
   "require": {
-    "cbwar/laravel-modelchanges": "^1"
+    "cbwar/laravel-modelchanges": "dev-master"
   }
 }
