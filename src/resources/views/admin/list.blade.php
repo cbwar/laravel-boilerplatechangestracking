@@ -36,9 +36,59 @@
 @include('boilerplate::load.datatables')
 
 @push('js')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/fr.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.15/dataRender/ellipsis.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
+    <script>
+        jQuery.fn.dataTable.render.expand = function () {
+
+            return function (d, type, row) {
+                // Order, search and type get the original data
+                if (type !== 'display') {
+                    return d;
+                }
+                if (typeof d !== 'string') {
+                    return d;
+                }
+                return '<div class="expandable">' +
+                    '<button class="btn btn-default btn-xs">' +
+                    '<i class="fa fa-expand"></i>&nbsp;{{ __('boilerplate_tracks::admin.list.details_button') }}</button>' +
+                    '<div class="expandable-data">' + d + '</div>' +
+                    '</div>';
+            };
+        };
+
+        (function ($) {
+            $(document).on('click', '.expandable button', function (e) {
+                // Show modal window
+                let $data = $(this).next('.expandable-data').html();
+                bootbox.dialog({
+                    title: '{{ __('boilerplate_tracks::admin.list.details') }}',
+                    message: $data,
+                    width: '500px',
+                });
+            });
+        })(jQuery);
+
+    </script>
     <script>
         $(function () {
             oTable = $('#tracks-table').DataTable({
+                columnDefs: [
+                    {
+                        targets: 4,
+                        render: $.fn.dataTable.render.ellipsis(40, false)
+                    },
+                    {
+                        targets: 1,
+                        render: $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'Do MMM YY à HH:mm', 'fr')
+                    },
+                    {
+                        targets: 5,
+                        render: $.fn.dataTable.render.expand()
+                    }
+                ],
                 processing: false,
                 serverSide: true,
                 ajax: {
@@ -56,39 +106,66 @@
                     {data: 'description', name: 'description', sortable: false},
                 ]
             });
-
-            $('#users-table').on('click', '.destroy', function (e) {
-                e.preventDefault();
-
-                var href = $(this).attr('href');
-
-                bootbox.confirm("{{ __('boilerplate::users.list.confirmdelete') }}", function (result) {
-                    if (result === false) return;
-
-                    $.ajax({
-                        url: href,
-                        method: 'delete',
-                        headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
-                        success: function () {
-                            oTable.ajax.reload();
-                            growl("{{ __('boilerplate::users.list.deletesuccess') }}", "success");
-                        }
-                    });
-                });
-            });
         });
     </script>
 @endpush
 
 @push('css')
     <style>
-        #tracks-table tr td:last-child div {
-            font-family: monospace;
-            font-size: small;
-            white-space: pre;
-            padding: 5px;
-            border: 1px solid lightgray;
-            border-radius: 5px;
+        .tracks-field {
+            font-weight: bold;
+            text-decoration: underline;
+            text-transform: capitalize;
+            margin-top: 10px;
+        }
+
+        .tracks-diff {
+            max-width: 300px;
+        }
+
+        .bootbox-body .tracks-diff {
+            max-width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .modal-dialog {
+                width: 900px !important;
+            }
+        }
+
+        .DifferencesSideBySide {
+            width: 100%;
+        }
+
+        .DifferencesSideBySide del {
+            background-color: #ffc8c3;
+        }
+
+        .DifferencesSideBySide ins {
+            background-color: #d4ffbd;
+        }
+
+        .DifferencesSideBySide thead {
+            display: none;
+        }
+
+        .DifferencesSideBySide tr th {
+            width: 5%;
+            vertical-align: top;
+            text-align: center;
+        }
+        .DifferencesSideBySide tr td {
+            width: 45%;
+        }
+
+        .dataTable .expandable {
+            height: 23px;
+            overflow-y: hidden;
+        }
+
+        .dataTable .expandable button {
+            float: right;
+            margin: 0;
         }
     </style>
 @endpush

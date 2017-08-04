@@ -36,6 +36,7 @@ class ServiceProvider extends Provider
 
         // Views
         $this->loadViewsFrom(__DIR__.'/resources/views', 'boilerplate_tracks');
+        $this->publishes([ __DIR__.'/resources/views'      => base_path('resources/views/vendor/boilerplate_tracks')], 'resources');
 
         // Migrations
         $this->loadMigrationsFrom(__DIR__ . '/migrations');

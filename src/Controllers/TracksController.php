@@ -47,7 +47,7 @@ class TracksController extends Controller
             ->rawColumns(['description', 'type'])
             ->editColumn('created_at', function ($item) {
                 // TODO: date i18n
-                return $item->created_at->format('d/m/Y H:i');
+                return $item->created_at->format('Y-m-d H:i:s');
             })
             ->editColumn('user_id', function ($item) {
                 if (empty($item->user_id)) {

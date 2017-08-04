@@ -9,5 +9,7 @@ return [
         'tbl_type' => 'Type',
         'tbl_title' => 'Modified element',
         'tbl_description' => 'Log',
+        'details' => 'Changes details',
+        'details_button' => 'Details',
     ]
 ];
