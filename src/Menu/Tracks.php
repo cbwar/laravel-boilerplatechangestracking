@@ -8,7 +8,7 @@ class Tracks
 {
     public function make(Builder $menu)
     {
-        $menu->add(__('boilerplate_tracks::admin.main_title'), ['route' => 'tracks.index', 'permission' => 'tracks_crud', 'icon' => 'database'])
+        $menu->add(__('boilerplate_tracks::admin.main_title'), ['route' => 'tracks.index', 'permission' => 'changestracking_view', 'icon' => 'database'])
             ->id('tracks')
             ->order(1900)
             ->activeIfRoute('tracks.*');

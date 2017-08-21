@@ -23,7 +23,7 @@ class TracksController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('ability:admin,tracks_crud');
+        $this->middleware('ability:admin,changestracking_view');
     }
 
     /**
